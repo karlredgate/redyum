@@ -1,0 +1,28 @@
+#!/bin/bash
+
+organization="$1"
+repo="$2"
+rpm="${repo}.rpm"
+
+api="http://github.com/api/v3"
+
+# Get the release assets URI
+assets_uri=$( latest-assets-uri $organization $repo )
+
+# get URI for actual asset
+uri=$( curl --silent $assets_uri | json2xml | xsltproc xslt/github-asset-url.xslt - )
+
+# download asset
+#
+# The github api downloads the actual asset when you send the
+# accept header.  If you use the default accept header you get
+# the JSON describing the asset instead.
+curl --silent -o $rpm --location --header 'Accept:application/octet-stream'  $uri
+
+# rename to real rpm name
+fullname=$( rpm --query --package $rpm ).rpm
+mv $rpm $fullname
+
+echo $fullname
+
+# vim:autoindent expandtab sw=4

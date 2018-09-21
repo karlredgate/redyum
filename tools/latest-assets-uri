@@ -1,0 +1,11 @@
+#!/bin/bash
+
+organization="$1"
+repo="$2"
+api="http://github.com/api/v3"
+
+curl --silent "${api}/repos/${organization}/${repo}/releases" | \
+json2xml | \
+xsltproc xslt/github-latest-assets-url.xslt -
+
+# vim:autoindent expandtab sw=4
