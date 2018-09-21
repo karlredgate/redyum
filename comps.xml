@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<comps>
+
+  <group>
+    <id>basic-server</id>
+    <name>Redgates Base</name>
+    <uservisible>true</uservisible>
+    <packagelist>
+        <packagereq type="mandatory">redgates-os-config</packagereq>
+    </packagelist>
+  </group>
+
+  <group>
+    <id>auth-server</id>
+    <name>AuthNZ Server</name>
+    <uservisible>true</uservisible>
+    <packagelist>
+        <packagereq type="mandatory">redgates-os-config</packagereq>
+	<!-- need to add keycloak -->
+    </packagelist>
+  </group>
+
+  <group>
+    <id>keymaker-server</id>
+    <name>Keymaker Server</name>
+    <uservisible>true</uservisible>
+    <packagelist>
+        <packagereq type="mandatory">redgates-os-config</packagereq>
+        <packagereq type="mandatory">keymaker</packagereq>
+    </packagelist>
+  </group>
+
+</comps>
